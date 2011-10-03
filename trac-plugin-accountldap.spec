@@ -6,8 +6,7 @@ Version:	0.32
 Release:	0.2
 License:	LGPL
 Group:		Applications/WWW
-# Source0Download:	http://trac-hacks.org/changeset/latest/accountldapplugin?old_path=/&filename=accountldapplugin&format=zip
-Source0:	%{plugin}.zip
+Source0:	http://trac-hacks.org/changeset/latest/accountldapplugin?old_path=/&filename=accountldapplugin&format=zip#/%{plugin}.zip
 # Source0-md5:	2258bc33b77b648ed7463bff12876364
 URL:		http://trac-hacks.org/wiki/AccountLdapPlugin
 BuildRequires:	python-devel
