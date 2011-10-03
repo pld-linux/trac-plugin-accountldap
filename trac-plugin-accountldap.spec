@@ -4,7 +4,7 @@ Summary:	AccountLdap Plugin for Trac
 Name:		trac-plugin-%{plugin}
 Version:	0.32
 Release:	0.1
-License:	BSD-like / GPL / ...
+License:	LGPL
 Group:		Applications/WWW
 Source0:	http://trac-hacks.org/changeset/latest/tracsqlhelperscript?old_path=/&format=zip#/%{plugin}.zip
 # Source0-md5:	9f706e733d205d4467ce6534772cb505
@@ -15,17 +15,21 @@ BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
+Allows you to change your password defined in LDAP. Also moved the
+basic properties of LDAP (user and mail) to the corresponding
+properties in Trac.
 
 %prep
-%setup -q -n %{plugin}plugin
-mv %{trac_ver}/* .
+%setup -qc
+mv tracsqlhelperscript/anyrelease/* .
 
 %build
 %{__python} setup.py build
 %{__python} setup.py egg_info
 
 ver=$(awk '$1 == "Version:" {print $2}' *.egg-info/PKG-INFO)
-test "$ver" = %{version}
+# it detects version 0.2.1 from egg
+#test "$ver" = %{version}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -45,5 +49,5 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%{py_sitescriptdir}/%{plugin}
+%{py_sitescriptdir}/tracsqlhelper
 %{py_sitescriptdir}/*-*.egg-info
